@@ -1,18 +1,10 @@
 #include <Arduino.h>
 #include <WiFiManager.h>
-#include <reboot_bootloader.h>
+#include <reboot_uart_dwnld.h>
 
 
 void setup()
 {
-/*	VoidFunc _ResetVector = (VoidFunc)0x40000080;
-	VoidFunc bootMain = (VoidFunc)0x40000fec;
-	VoidFunc uartAttach = (VoidFunc)0x4000383c;
-	U32Func Uart_Init = (U32Func)0x40003a14;
-	VoidFunc ets_install_uart_printf = (VoidFunc)0x40002438;
-	U32VoidFunc rtc_get_reset_reason = (U32VoidFunc)0x400025e0;
-	VoidFunc bootmode1 = (VoidFunc)0x400010be;*/
-
 	delay(1000);
 
 	Serial.begin(115200);
@@ -31,7 +23,7 @@ void setup()
 	ESP.wdtDisable();
 	*((volatile uint32_t*) 0x60000900) &= ~(1); // Hardware WDT OFF
 
-	system_restart_local_bootloader();
+	system_restart_local_uart_dwnld();
 
 }
 
