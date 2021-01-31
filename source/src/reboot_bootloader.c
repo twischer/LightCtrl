@@ -4,12 +4,28 @@
 #include <user_interface.h>
 #include <spi_flash.h>
 #include "../../../framework-esp8266-nonos-sdk/driver_lib/include/driver/uart.h"
+#include "../../../toolchain-xtensa/include/xtensa/corebits.h"
 
 #define PERIPHS_DPORT_18	(PERIPHS_DPORT_BASEADDR + 0x018)	// 0x3feffe00 + 0x218
 #define PERIPHS_DPORT_24	(PERIPHS_DPORT_BASEADDR + 0x024)	// 0x3feffe00 + 0x224
 #define PERIPHS_I2C_48		(0x60000a00 + 0x348)
 
-//void _ResetVector();
+//From xtruntime-frames.h
+struct XTensa_exception_frame_s {
+	uint32_t pc;
+	uint32_t ps;
+	uint32_t sar;
+	uint32_t vpri;
+	uint32_t a[16]; //a0..a15
+//These are added manually by the exception code; the HAL doesn't set these on an exception.
+	uint32_t litbase;
+	uint32_t sr176;
+	uint32_t sr208;
+	 //'reason' is abused for both the debug and the exception vector: if bit 7 is set,
+	//this contains an exception reason, otherwise it contains a debug vector bitmap.
+	uint32_t reason;
+};
+
 uint32_t Wait_SPI_Idle(SpiFlashChip *fc);
 void Cache_Read_Disable();
 int32_t system_func1(uint32_t);
@@ -20,9 +36,22 @@ void uartAttach();
 void Uart_Init(uint32_t uart_no);
 void ets_install_uart_printf(uint32_t uart_no);
 void UartDwnLdProc(uint8_t* ram_addr, uint32_t size, void (**user_start_ptr)());
+void software_reset();
+void ets_run();
 
+void _xtos_set_exception_handler(int cause, void (exhandler)(struct XTensa_exception_frame_s *frame));
+
+typedef void (*VoidFuncExc)(struct XTensa_exception_frame_s*);
+VoidFuncExc window_spill_exc_handler = (VoidFuncExc)0x400017e0;
+VoidFuncExc print_fatal_exc_handler = (VoidFuncExc)0x40001878;
+
+
+typedef int (*IntFunc)();
+IntFunc boot_from_flash = (IntFunc)0x40001308;
+
+//extern void user_start_fptr();
 typedef void (*VoidFunc)();
-VoidFunc user_start_fptr = NULL; /* originally allocated at 0x3fffdcd0 */
+#define user_start_fptr		(*(VoidFunc*)0x3fffdcd0)
 
 
 void ICACHE_RAM_ATTR boot_from_something_bootloader(void (**user_start_ptr)())
@@ -32,22 +61,10 @@ void ICACHE_RAM_ATTR boot_from_something_bootloader(void (**user_start_ptr)())
 	 * (GPI >> 0x1D & 0x07) == 6
 	 */
 
-	/* loc_4000127a */
-	uint32_t uart_no = 0; // TODO GPI BIT_18
-	uint32_t divlatch = uart_baudrate_detect(uart_no, 0);
-	uart_div_modify(uart_no, divlatch & 0xFFFF);
-	uint32_t a0 = 2;
-
-	/* loc_4000123b */
-	if (a0 == 2) {
-		UartDwnLdProc((void*)0x3fffa000, 0x2000, user_start_ptr);
-	} else {
-		//sip_40001160();
-	}
-
-	if (uart_no) {
-		uart_buff_switch(0);
-	}
+	const uint32_t uart_no = 0;
+	const uint16_t divlatch = uart_baudrate_detect(uart_no, 0);
+	uart_div_modify(uart_no, divlatch);
+	UartDwnLdProc((void*)0x3fffa000, 0x2000, user_start_ptr);
 }
 
 void ICACHE_RAM_ATTR main_bootloader()
@@ -60,20 +77,37 @@ void ICACHE_RAM_ATTR main_bootloader()
 	Uart_Init(0);
 	ets_install_uart_printf(0);
 
-	boot_from_something_bootloader((VoidFunc*)0x3fffdcd0); //&user_start_fptr);
+	ets_printf("boot_from_something_bootloader %p\n", boot_from_something_bootloader);
 
-	//if (*user_start_fptr) {
-	//}
+	boot_from_something_bootloader(&user_start_fptr);
 
-	//boot_from_flash();
+	ets_printf("user_start_fptr &%p %p\n", &user_start_fptr, user_start_fptr);
+	ets_printf("1111 %p %p\n", user_start_fptr, &user_start_fptr);
 
-	//_xtos_set_exception_handler(0x9, window_spill_exc_handler);
-	// TODO ...
+	if (user_start_fptr == NULL) {
+		if (boot_from_flash() != 0) {
+			ets_printf("%s %s \n", "ets_main.c", "181");
+			while (true);
+		}
+	}
+	ets_printf("22222 %p %p\n", user_start_fptr, &user_start_fptr);
 
-//	if (user_start_fptr) {
-//		user_start_fptr();
-//	}
+	_xtos_set_exception_handler(EXCCAUSE_UNALIGNED, window_spill_exc_handler);
+	_xtos_set_exception_handler(EXCCAUSE_ILLEGAL, print_fatal_exc_handler);
+	_xtos_set_exception_handler(EXCCAUSE_INSTR_ERROR, print_fatal_exc_handler);
+	_xtos_set_exception_handler(EXCCAUSE_LOAD_STORE_ERROR, print_fatal_exc_handler);
+	_xtos_set_exception_handler(EXCCAUSE_LOAD_PROHIBITED, print_fatal_exc_handler);
+	_xtos_set_exception_handler(EXCCAUSE_STORE_PROHIBITED, print_fatal_exc_handler);
+	_xtos_set_exception_handler(EXCCAUSE_PRIVILEGED, print_fatal_exc_handler);
+	ets_printf("33333 %p %p\n", user_start_fptr, &user_start_fptr);
 
+	if (user_start_fptr) {
+		user_start_fptr();
+	}
+
+	ets_printf("user code done2 %p %p\n", user_start_fptr, &user_start_fptr);
+	ets_run();
+	//return 0;
 	while (true);
 }
 
