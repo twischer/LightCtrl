@@ -20,10 +20,7 @@ void setup()
 	Serial.println("Reset");
 
 
-	ESP.wdtDisable();
-	*((volatile uint32_t*) 0x60000900) &= ~(1); // Hardware WDT OFF
-
-	system_restart_local_uart_dwnld();
+	ESP.reboot_uart_dwnld();
 
 }
 
