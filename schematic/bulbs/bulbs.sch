@@ -1,0 +1,449 @@
+EESchema Schematic File Version 4
+EELAYER 30 0
+EELAYER END
+$Descr A4 11693 8268
+encoding utf-8
+Sheet 1 1
+Title ""
+Date ""
+Rev ""
+Comp ""
+Comment1 ""
+Comment2 ""
+Comment3 ""
+Comment4 ""
+$EndDescr
+$Comp
+L ESP8266:ESP-03 U1
+U 1 1 601C5DF6
+P 2550 4750
+F 0 "U1" H 2550 5831 50  0000 C CNN
+F 1 "ESP-03" H 2550 5740 50  0000 C CNN
+F 2 "ESP8266:ESP-03" H 2550 4850 50  0001 C CNN
+F 3 "http://l0l.org.uk/2014/12/esp8266-modules-hardware-guide-gotta-catch-em-all/" H 2550 4850 50  0001 C CNN
+	1    2550 4750
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0101
+U 1 1 601C7EF5
+P 2550 5550
+F 0 "#PWR0101" H 2550 5300 50  0001 C CNN
+F 1 "GND" H 2555 5377 50  0000 C CNN
+F 2 "" H 2550 5550 50  0001 C CNN
+F 3 "" H 2550 5550 50  0001 C CNN
+	1    2550 5550
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0102
+U 1 1 601CC0C9
+P 1350 4750
+F 0 "#PWR0102" H 1350 4500 50  0001 C CNN
+F 1 "GND" H 1355 4577 50  0000 C CNN
+F 2 "" H 1350 4750 50  0001 C CNN
+F 3 "" H 1350 4750 50  0001 C CNN
+	1    1350 4750
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0103
+U 1 1 601CE237
+P 3450 4650
+F 0 "#PWR0103" H 3450 4400 50  0001 C CNN
+F 1 "GND" V 3455 4522 50  0000 R CNN
+F 2 "" H 3450 4650 50  0001 C CNN
+F 3 "" H 3450 4650 50  0001 C CNN
+	1    3450 4650
+	0    -1   -1   0   
+$EndComp
+Wire Wire Line
+	1650 4850 1600 4850
+Wire Wire Line
+	1600 4850 1600 3850
+Wire Wire Line
+	1600 3850 2550 3850
+$Comp
+L Connector_Generic:Conn_01x03 J2
+U 1 1 601DD31E
+P 1150 4650
+F 0 "J2" H 1230 4692 50  0000 L CNN
+F 1 "Download" H 1230 4601 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x03_P2.54mm_Vertical" H 1150 4650 50  0001 C CNN
+F 3 "~" H 1150 4650 50  0001 C CNN
+	1    1150 4650
+	-1   0    0    1   
+$EndComp
+$Comp
+L power:GND #PWR0108
+U 1 1 602075C1
+P 3550 3250
+F 0 "#PWR0108" H 3550 3000 50  0001 C CNN
+F 1 "GND" H 3555 3077 50  0000 C CNN
+F 2 "" H 3550 3250 50  0001 C CNN
+F 3 "" H 3550 3250 50  0001 C CNN
+	1    3550 3250
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x01 J6
+U 1 1 6021A11C
+P 2750 3850
+F 0 "J6" H 2830 3892 50  0000 L CNN
+F 1 "2V6" H 2830 3801 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical" H 2750 3850 50  0001 C CNN
+F 3 "~" H 2750 3850 50  0001 C CNN
+	1    2750 3850
+	1    0    0    -1  
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x01 J5
+U 1 1 6021B4A7
+P 2650 2850
+F 0 "J5" V 2614 2762 50  0000 R CNN
+F 1 "230V" V 2523 2762 50  0000 R CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical" H 2650 2850 50  0001 C CNN
+F 3 "~" H 2650 2850 50  0001 C CNN
+	1    2650 2850
+	0    -1   -1   0   
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x01 J4
+U 1 1 6021C174
+P 3200 3450
+F 0 "J4" V 3072 3530 50  0000 L CNN
+F 1 "GND" V 3163 3530 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical" H 3200 3450 50  0001 C CNN
+F 3 "~" H 3200 3450 50  0001 C CNN
+	1    3200 3450
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x01 J3
+U 1 1 6021E505
+P 2900 3450
+F 0 "J3" V 2772 3530 50  0000 L CNN
+F 1 "GND" V 2863 3530 50  0000 L CNN
+F 2 "Connector_PinHeader_2.54mm:PinHeader_1x01_P2.54mm_Vertical" H 2900 3450 50  0001 C CNN
+F 3 "~" H 2900 3450 50  0001 C CNN
+	1    2900 3450
+	0    1    1    0   
+$EndComp
+Wire Wire Line
+	3200 3250 3550 3250
+Wire Wire Line
+	3200 3250 2900 3250
+Connection ~ 3200 3250
+Wire Wire Line
+	1650 4550 1350 4550
+Wire Wire Line
+	1650 4650 1350 4650
+$Comp
+L Transistor_FET:IPP060N06N Q5
+U 1 1 6020757A
+P 7050 3750
+F 0 "Q5" H 7254 3796 50  0000 L CNN
+F 1 "IPP60R750" H 7254 3705 50  0000 L CNN
+F 2 "Package_TO_SOT_THT:TO-220-3_Vertical" H 7300 3675 50  0001 L CIN
+F 3 "https://www.infineon.com/dgdl/Infineon-IPP060N06N-DS-v02_02-en.pdf?fileId=db3a30433727a44301372c06d9d7498a" H 7050 3750 50  0001 L CNN
+	1    7050 3750
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0104
+U 1 1 6020A5BB
+P 7150 3950
+F 0 "#PWR0104" H 7150 3700 50  0001 C CNN
+F 1 "GND" H 7155 3777 50  0000 C CNN
+F 2 "" H 7150 3950 50  0001 C CNN
+F 3 "" H 7150 3950 50  0001 C CNN
+	1    7150 3950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Transistor_FET:IPP060N06N Q4
+U 1 1 6020F7C4
+P 6200 3750
+F 0 "Q4" H 6404 3796 50  0000 L CNN
+F 1 "IPP60R750" H 6404 3705 50  0000 L CNN
+F 2 "Package_TO_SOT_THT:TO-220-3_Vertical" H 6450 3675 50  0001 L CIN
+F 3 "https://www.infineon.com/dgdl/Infineon-IPP060N06N-DS-v02_02-en.pdf?fileId=db3a30433727a44301372c06d9d7498a" H 6200 3750 50  0001 L CNN
+	1    6200 3750
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0105
+U 1 1 6020F7CA
+P 6300 3950
+F 0 "#PWR0105" H 6300 3700 50  0001 C CNN
+F 1 "GND" H 6305 3777 50  0000 C CNN
+F 2 "" H 6300 3950 50  0001 C CNN
+F 3 "" H 6300 3950 50  0001 C CNN
+	1    6300 3950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Transistor_FET:IPP060N06N Q3
+U 1 1 602118CD
+P 5350 3750
+F 0 "Q3" H 5554 3796 50  0000 L CNN
+F 1 "IPP60R750" H 5554 3705 50  0000 L CNN
+F 2 "Package_TO_SOT_THT:TO-220-3_Vertical" H 5600 3675 50  0001 L CIN
+F 3 "https://www.infineon.com/dgdl/Infineon-IPP060N06N-DS-v02_02-en.pdf?fileId=db3a30433727a44301372c06d9d7498a" H 5350 3750 50  0001 L CNN
+	1    5350 3750
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0106
+U 1 1 602118D3
+P 5450 3950
+F 0 "#PWR0106" H 5450 3700 50  0001 C CNN
+F 1 "GND" H 5455 3777 50  0000 C CNN
+F 2 "" H 5450 3950 50  0001 C CNN
+F 3 "" H 5450 3950 50  0001 C CNN
+	1    5450 3950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3450 4750 5150 4750
+$Comp
+L Transistor_FET:IPP060N06N Q1
+U 1 1 6021B9A6
+P 3650 3750
+F 0 "Q1" H 3854 3796 50  0000 L CNN
+F 1 "IPP60R750" H 3854 3705 50  0000 L CNN
+F 2 "Package_TO_SOT_THT:TO-220-3_Vertical" H 3900 3675 50  0001 L CIN
+F 3 "https://www.infineon.com/dgdl/Infineon-IPP060N06N-DS-v02_02-en.pdf?fileId=db3a30433727a44301372c06d9d7498a" H 3650 3750 50  0001 L CNN
+	1    3650 3750
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0107
+U 1 1 6021B9AC
+P 3750 3950
+F 0 "#PWR0107" H 3750 3700 50  0001 C CNN
+F 1 "GND" H 3755 3777 50  0000 C CNN
+F 2 "" H 3750 3950 50  0001 C CNN
+F 3 "" H 3750 3950 50  0001 C CNN
+	1    3750 3950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	3450 4450 3450 3750
+$Comp
+L Transistor_FET:IPP060N06N Q2
+U 1 1 60222EF4
+P 4500 3750
+F 0 "Q2" H 4704 3796 50  0000 L CNN
+F 1 "IPP60R750" H 4704 3705 50  0000 L CNN
+F 2 "Package_TO_SOT_THT:TO-220-3_Vertical" H 4750 3675 50  0001 L CIN
+F 3 "https://www.infineon.com/dgdl/Infineon-IPP060N06N-DS-v02_02-en.pdf?fileId=db3a30433727a44301372c06d9d7498a" H 4500 3750 50  0001 L CNN
+	1    4500 3750
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0109
+U 1 1 60222EFA
+P 4600 3950
+F 0 "#PWR0109" H 4600 3700 50  0001 C CNN
+F 1 "GND" H 4605 3777 50  0000 C CNN
+F 2 "" H 4600 3950 50  0001 C CNN
+F 3 "" H 4600 3950 50  0001 C CNN
+	1    4600 3950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	4300 3750 4300 4550
+Wire Wire Line
+	4300 4550 3450 4550
+Wire Wire Line
+	6000 3750 6000 4850
+Wire Wire Line
+	3450 4850 6000 4850
+Wire Wire Line
+	5150 3750 5150 4750
+Wire Wire Line
+	6850 4950 6850 3750
+Wire Wire Line
+	3450 4950 6850 4950
+Connection ~ 2550 3850
+$Comp
+L Connector_Generic:Conn_01x06 J7
+U 1 1 60248170
+P 7350 3250
+F 0 "J7" H 7430 3242 50  0000 L CNN
+F 1 "Bulbs" H 7430 3151 50  0000 L CNN
+F 2 "Connector_PinSocket_2.54mm:PinSocket_1x06_P2.54mm_Vertical" H 7350 3250 50  0001 C CNN
+F 3 "~" H 7350 3250 50  0001 C CNN
+	1    7350 3250
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7150 3450 6300 3450
+Wire Wire Line
+	6300 3450 6300 3550
+Wire Wire Line
+	7150 3350 5450 3350
+Wire Wire Line
+	5450 3350 5450 3550
+Wire Wire Line
+	7150 3250 4600 3250
+Wire Wire Line
+	4600 3250 4600 3550
+Wire Wire Line
+	7150 3150 3750 3150
+Wire Wire Line
+	3750 3150 3750 3550
+Connection ~ 2650 3050
+$Comp
+L Device:D_Bridge_+AA- D1
+U 1 1 60254275
+P 1850 3050
+F 0 "D1" H 2194 3096 50  0000 L CNN
+F 1 "D_Bridge_+AA-" H 2194 3005 50  0000 L CNN
+F 2 "" H 1850 3050 50  0001 C CNN
+F 3 "~" H 1850 3050 50  0001 C CNN
+	1    1850 3050
+	1    0    0    -1  
+$EndComp
+$Comp
+L power:GND #PWR0110
+U 1 1 60255720
+P 1550 3050
+F 0 "#PWR0110" H 1550 2800 50  0001 C CNN
+F 1 "GND" H 1555 2877 50  0000 C CNN
+F 2 "" H 1550 3050 50  0001 C CNN
+F 3 "" H 1550 3050 50  0001 C CNN
+	1    1550 3050
+	0    1    1    0   
+$EndComp
+$Comp
+L Connector_Generic:Conn_01x02 J1
+U 1 1 60256CBF
+P 1100 3250
+F 0 "J1" H 1018 3467 50  0000 C CNN
+F 1 "L1_N" H 1018 3376 50  0000 C CNN
+F 2 "" H 1100 3250 50  0001 C CNN
+F 3 "~" H 1100 3250 50  0001 C CNN
+	1    1100 3250
+	-1   0    0    -1  
+$EndComp
+$Comp
+L Device:Fuse F1
+U 1 1 6025809F
+P 1700 2750
+F 0 "F1" V 1503 2750 50  0000 C CNN
+F 1 "2A" V 1594 2750 50  0000 C CNN
+F 2 "" V 1630 2750 50  0001 C CNN
+F 3 "~" H 1700 2750 50  0001 C CNN
+	1    1700 2750
+	0    1    1    0   
+$EndComp
+$Comp
+L Device:Lamp LA_Yellow1
+U 1 1 6026EBFB
+P 7600 2950
+F 0 "LA_Yellow1" H 7728 2996 50  0000 L CNN
+F 1 "60W" H 7728 2905 50  0000 L CNN
+F 2 "" V 7600 3050 50  0001 C CNN
+F 3 "~" V 7600 3050 50  0001 C CNN
+	1    7600 2950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7150 3150 7600 3150
+Connection ~ 7150 3150
+Wire Wire Line
+	7150 3050 7450 3050
+Wire Wire Line
+	7450 3050 7450 2750
+Wire Wire Line
+	7450 2750 7600 2750
+Connection ~ 7150 3050
+Wire Wire Line
+	1850 3350 1300 3350
+Wire Wire Line
+	1300 3250 1300 2750
+Wire Wire Line
+	1300 2750 1550 2750
+Wire Wire Line
+	2650 3050 2150 3050
+Wire Wire Line
+	2650 3050 7150 3050
+$Comp
+L Device:Lamp LA_Black1
+U 1 1 602A6D24
+P 8200 2950
+F 0 "LA_Black1" H 8328 2996 50  0000 L CNN
+F 1 "60W" H 8328 2905 50  0000 L CNN
+F 2 "" V 8200 3050 50  0001 C CNN
+F 3 "~" V 8200 3050 50  0001 C CNN
+	1    8200 2950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Lamp LA_Green1
+U 1 1 602A7381
+P 8800 2950
+F 0 "LA_Green1" H 8928 2996 50  0000 L CNN
+F 1 "60W" H 8928 2905 50  0000 L CNN
+F 2 "" V 8800 3050 50  0001 C CNN
+F 3 "~" V 8800 3050 50  0001 C CNN
+	1    8800 2950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Lamp LA_Red1
+U 1 1 602A79DD
+P 9400 2950
+F 0 "LA_Red1" H 9528 2996 50  0000 L CNN
+F 1 "60W" H 9528 2905 50  0000 L CNN
+F 2 "" V 9400 3050 50  0001 C CNN
+F 3 "~" V 9400 3050 50  0001 C CNN
+	1    9400 2950
+	1    0    0    -1  
+$EndComp
+$Comp
+L Device:Lamp LA_Blue1
+U 1 1 602A7F86
+P 9900 2950
+F 0 "LA_Blue1" H 10028 2996 50  0000 L CNN
+F 1 "60W" H 10028 2905 50  0000 L CNN
+F 2 "" V 9900 3050 50  0001 C CNN
+F 3 "~" V 9900 3050 50  0001 C CNN
+	1    9900 2950
+	1    0    0    -1  
+$EndComp
+Wire Wire Line
+	7600 2750 8200 2750
+Connection ~ 7600 2750
+Wire Wire Line
+	8200 2750 8800 2750
+Connection ~ 8200 2750
+Wire Wire Line
+	8800 2750 9400 2750
+Connection ~ 8800 2750
+Wire Wire Line
+	9400 2750 9900 2750
+Connection ~ 9400 2750
+Wire Wire Line
+	7150 3250 8200 3250
+Wire Wire Line
+	8200 3250 8200 3150
+Connection ~ 7150 3250
+Wire Wire Line
+	7150 3350 8800 3350
+Wire Wire Line
+	8800 3350 8800 3150
+Connection ~ 7150 3350
+Wire Wire Line
+	7150 3450 9400 3450
+Wire Wire Line
+	9400 3450 9400 3150
+Connection ~ 7150 3450
+Wire Wire Line
+	7150 3550 9900 3550
+Wire Wire Line
+	9900 3550 9900 3150
+Connection ~ 7150 3550
+$EndSCHEMATC
